@@ -71,7 +71,7 @@ export default class ImageGallery extends Component {
   
   render() {
     return (
-        <body>
+        <section>
 
         {this.state.error && <div className='wrap'><h2>Картинки с именем <span className='wrapper'>{this.props.imgName}</span> не найдено</h2></div>}
 
@@ -87,7 +87,7 @@ export default class ImageGallery extends Component {
        
         { this.state.showModal && <Modal URL={this.state.modalImg} closeModal={this.closeModal}  />}
        
-        </body>
+        </section>
   )
   }
 }
