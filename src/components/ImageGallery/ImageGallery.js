@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import API from "../../Services/API"
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem'
 import Modal from 'components/Modal/Modal'
-import { TailSpin } from  'react-loader-spinner'
+import Button from 'components/Button/Button'
+
 import "./ImageGallery.scss"
+import Loading from 'components/Loading/Loading'
 
 
 
@@ -79,9 +81,9 @@ export default class ImageGallery extends Component {
         
         </ul> </>}
         
-        {this.state.loading && <div className='wrap'><TailSpin color="blue"/></div>}
+        {this.state.loading && <Loading/>}
 
-       { this.state.maxPage !== this.state.page && this.state.hits && this.state.showLoadMore && <div className='wrap'><button className='loadMoreBtn' type='button' onClick={this.loadMore} > load more... </button></div> }
+       { this.state.maxPage !== this.state.page && this.state.hits && this.state.showLoadMore && <Button loadMore={this.loadMore}/> }
        
         { this.state.showModal && <Modal URL={this.state.modalImg} closeModal={this.closeModal}  />}
        
