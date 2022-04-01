@@ -74,23 +74,24 @@ export default class ImageGallery extends Component {
   
   render() {
 
-    
+    const {error, hits, status, maxPage} = this.state
     return (
+      
         <section>
 
-        {this.state.error && <div className='wrap'><h2>Картинки с именем <span className='wrapper'>{this.props.imgName}</span> не найдено</h2></div>}
+        {error && <div className='wrap'><h2>Картинки с именем <span className='wrapper'>{this.props.imgName}</span> не найдено</h2></div>}
 
         {this.props.imgName === "" && <div className='wrap'><h2>Введите текст для поиска картинки</h2></div>}
   
-        {this.state.hits && <><ul className="gallery">{this.state.hits.map(img => <ImageGalleryItem key={img.id} URL={img.webformatURL} largeImg={img.largeImageURL} alt={this.props.imgName} showModal={this.showModal} />)}
+        {hits && <><ul className="gallery">{this.state.hits.map(img => <ImageGalleryItem key={img.id} URL={img.webformatURL} largeImg={img.largeImageURL} alt={this.props.imgName} showModal={this.showModal} />)}
         
         </ul> </>}
         
-        {this.state.status === "loading" && <Loading/>}
+        {status === "loading" && <Loading/>}
 
-       { this.state.maxPage !== this.state.page && this.state.hits && this.state.showLoadMore && <Button loadMore={this.loadMore}/> }
+       {maxPage !== this.state.page && this.state.hits && this.state.showLoadMore && <Button loadMore={this.loadMore}/> }
        
-        { this.state.status === "modal" && <Modal  URL={this.state.modalImg} closeModal={this.closeModal}  />}
+        { status === "modal" && <Modal  URL={this.state.modalImg} closeModal={this.closeModal}  />}
        
         </section>
   )
